@@ -9,6 +9,7 @@
 
     <TextView
         style="@style/InfoText"
+        android:id="@+id/fragment_a"
         android:text="Это FragmentA :)" />
 
     <androidx.fragment.app.FragmentContainerView
