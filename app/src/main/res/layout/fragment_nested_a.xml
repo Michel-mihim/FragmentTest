@@ -10,6 +10,7 @@
 
     <TextView
         style="@style/InfoText"
+        android:id="@+id/nested_a"
         android:text="Это Nested FragmentA!"/>
 
     <Button

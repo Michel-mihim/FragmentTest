@@ -35,6 +35,9 @@ class NestedFragmentA : Fragment() {
          * При нажатии на кнопку заменяем фрагмент, который находится внутри контейнера
          * "fragment_child_container", на новый
          */
+
+        FragmentNestedABinding.bind(view).nestedA.text = (requireActivity() as RadioStorage).getRadio()
+
         binding.button.setOnClickListener {
             // Тут транзакция реализована через extension-функцию, а не через цепочку из методов
             parentFragmentManager.commit {
