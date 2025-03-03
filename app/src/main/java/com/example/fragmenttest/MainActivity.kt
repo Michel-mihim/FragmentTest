@@ -8,8 +8,8 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity(), RadioStorage {
 
-    val radio = "Radio 7"
-    var _radio = ""
+    private val radio = "Radio 7"
+    private lateinit var radioName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +24,12 @@ class MainActivity : AppCompatActivity(), RadioStorage {
 
     }
 
-    override fun setRadio(radio: String) {
-        this._radio = radio
+    override fun setRadio(radio: String?) {
+        this.radioName = radio ?: ""
     }
 
     override fun getRadio(): String {
-        return _radio
+        return radioName ?: ""
     }
 
 }
