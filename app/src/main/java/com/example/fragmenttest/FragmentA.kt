@@ -25,7 +25,7 @@ class FragmentA : Fragment() {
         val radio = requireArguments().getString(RADIO_KEY)
         FragmentABinding.bind(view).fragmentA.text = radio
 
-        (requireActivity() as RadioStorage).setRadio(radio!!)
+        (requireActivity() as RadioStorage).setRadio(radio+" night")
         // Добавляем первый вложенный фрагмент
         childFragmentManager.beginTransaction()
             .add(R.id.fragment_child_container, NestedFragmentA())
