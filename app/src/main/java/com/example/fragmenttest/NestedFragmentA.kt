@@ -7,26 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.fragmenttest.databinding.FragmentNestedABinding
+import com.example.fragmenttest.databinding.FragmentNestedBBinding
 
 // Первый вложенный фрагмент
-class NestedFragmentA : Fragment() {
+class NestedFragmentA : BindingFragment<FragmentNestedABinding>() {
 
-    private var _binding: FragmentNestedABinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
+    override fun createBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentNestedABinding.inflate(inflater, container, false)
-        return binding.root
+        container: ViewGroup?
+    ): FragmentNestedABinding {
+        return FragmentNestedABinding.inflate(inflater, container, false)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +28,8 @@ class NestedFragmentA : Fragment() {
          * "fragment_child_container", на новый
          */
 
-        FragmentNestedABinding.bind(view).nestedA.text = (requireActivity() as RadioStorage).getRadio()
+        val name = (requireActivity() as RadioStorage).getRadio()
+        FragmentNestedABinding.bind(view).nestedA.text = name + " 1"
 
         binding.button.setOnClickListener {
             // Тут транзакция реализована через extension-функцию, а не через цепочку из методов

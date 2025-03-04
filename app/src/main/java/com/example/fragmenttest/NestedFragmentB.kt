@@ -6,27 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.fragmenttest.databinding.FragmentNestedABinding
 import com.example.fragmenttest.databinding.FragmentNestedBBinding
 
 // Второй вложенный фрагмент
-class NestedFragmentB : Fragment() {
+class NestedFragmentB : BindingFragment<FragmentNestedBBinding>() {
 
-    private var _binding: FragmentNestedBBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
+    override fun createBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentNestedBBinding.inflate(inflater, container, false)
-        return binding.root
+        container: ViewGroup?
+    ): FragmentNestedBBinding {
+        return FragmentNestedBBinding.inflate(inflater, container, false)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,6 +27,10 @@ class NestedFragmentB : Fragment() {
          * Тут также при нажатии на кнопку заменяем фрагмент из "fragment_child_container" на
          * другой.
          */
+
+        val name = (requireActivity() as RadioStorage).getRadio()
+        FragmentNestedBBinding.bind(view).nestedB.text = name + " 2"
+
         binding.button.setOnClickListener {
             parentFragmentManager.commit {
                 replace(R.id.fragment_child_container, NestedFragmentA())

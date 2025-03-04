@@ -9,7 +9,11 @@ import androidx.fragment.app.Fragment
 import com.example.fragmenttest.databinding.FragmentABinding
 
 // Родительский класс, в который положим вложенные классы NestedFragmentA и NestedFragmentB.
-class FragmentA : Fragment() {
+class FragmentA : BindingFragment<FragmentABinding>() {
+
+    override fun createBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentABinding {
+        return FragmentABinding.inflate(inflater, container, false)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +29,7 @@ class FragmentA : Fragment() {
         val radio = requireArguments().getString(RADIO_KEY)
         FragmentABinding.bind(view).fragmentA.text = radio
 
-        (requireActivity() as RadioStorage).setRadio(radio+" night")
+        (requireActivity() as RadioStorage).setRadio(radio)
         // Добавляем первый вложенный фрагмент
         childFragmentManager.beginTransaction()
             .add(R.id.fragment_child_container, NestedFragmentA())
