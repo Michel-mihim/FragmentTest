@@ -11,7 +11,10 @@ import com.example.fragmenttest.databinding.FragmentABinding
 // Родительский класс, в который положим вложенные классы NestedFragmentA и NestedFragmentB.
 class FragmentA : BindingFragment<FragmentABinding>(), SelectPage {
 
-    override fun createBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentABinding {
+    override fun createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentABinding {
         return FragmentABinding.inflate(inflater, container, false)
     }
 
