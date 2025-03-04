@@ -15,6 +15,7 @@ class FragmentA : BindingFragment<FragmentABinding>(), SelectPage {
         return FragmentABinding.inflate(inflater, container, false)
     }
 
+    /*
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,6 +23,8 @@ class FragmentA : BindingFragment<FragmentABinding>(), SelectPage {
     ): View {
         return FragmentABinding.inflate(inflater, container, false).root
     }
+
+     */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,7 +52,7 @@ class FragmentA : BindingFragment<FragmentABinding>(), SelectPage {
     companion object {
         const val RADIO_KEY = "RADIO_KEY"
 
-        fun newInstance(radio: String) = FragmentA().apply {
+        fun getInstance(radio: String) = FragmentA().apply {
             arguments = bundleOf(RADIO_KEY to radio)
         }
     }

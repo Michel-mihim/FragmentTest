@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), RadioStorage {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, FragmentA.newInstance(radio))
+                .add(R.id.fragment_container, FragmentA.getInstance(radio))
                 .commit()
         }
 

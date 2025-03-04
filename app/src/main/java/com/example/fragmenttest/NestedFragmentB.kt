@@ -32,9 +32,14 @@ class NestedFragmentB : BindingFragment<FragmentNestedBBinding>() {
         FragmentNestedBBinding.bind(view).nestedB.text = name + " 2"
 
         binding.button.setOnClickListener {
+            /*
             parentFragmentManager.commit {
                 replace(R.id.fragment_child_container, NestedFragmentA())
             }
+
+             */
+
+            (parentFragment as? SelectPage)?.navigateTo(page = 0)
         }
     }
 }
