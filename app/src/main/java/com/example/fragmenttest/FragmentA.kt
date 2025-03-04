@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.fragmenttest.databinding.FragmentABinding
 
 // Родительский класс, в который положим вложенные классы NestedFragmentA и NestedFragmentB.
-class FragmentA : BindingFragment<FragmentABinding>() {
+class FragmentA : BindingFragment<FragmentABinding>(), SelectPage {
 
     override fun createBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentABinding {
         return FragmentABinding.inflate(inflater, container, false)
@@ -31,9 +31,19 @@ class FragmentA : BindingFragment<FragmentABinding>() {
 
         (requireActivity() as RadioStorage).setRadio(radio)
         // Добавляем первый вложенный фрагмент
+        /*
         childFragmentManager.beginTransaction()
             .add(R.id.fragment_child_container, NestedFragmentA())
             .commit()
+
+         */
+
+         val adapter = PagerAdapter(hostFragment = this)
+         binding.pager.adapter = adapter
+    }
+
+    override fun navigateTo(page: Int) {
+        binding.pager.currentItem = page
     }
 
     companion object {
